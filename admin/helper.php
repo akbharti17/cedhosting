@@ -1,5 +1,7 @@
 <?php
 include("../tbl_product.php");
+include("../tbl_prod_description.php");
+$ob=new ProdDes();
 $obj=new Product();
 
 if($_POST['action']=='delete'){
@@ -48,5 +50,6 @@ if($_POST['action']=='delete all'){
 
 if($_POST['action']=='cart'){
     $id=$_POST['id'];
-    echo $id;
+    $result=$ob->getrecord($id);
+    var_dump($result->fetch_assoc());
 }
