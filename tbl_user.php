@@ -1,11 +1,13 @@
 <?php
-class Tbluser
+include_once("connection.php");
+
+class User
 {
     public $con;
 
     function __construct()
     {
-        include("connection.php");
+        
         $dbobj = new DbConnect();
         $this->con = $dbobj->mkconnection();
     }

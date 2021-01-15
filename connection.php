@@ -18,7 +18,6 @@
           if($this->conn->error){
               echo "error in connection";
           }else{
-              echo "Connected";
               return $this->conn;
           }
       }

@@ -69,78 +69,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div id="myTabContent" class="tab-content">
 									<div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
 										<div class="linux-prices">
-											<div class="col-md-3 linux-price">
-												<div class="linux-top">
-												<h4>Standard</h4>
-												</div>
-												<div class="linux-bottom">
-													<h5>$279 <span class="month">per month</span></h5>
-													<h6>Single Domain</h6>
-													<ul>
-													<li><strong>Unlimited</strong> Disk Space</li>
-													<li><strong>Unlimited</strong> Data Transfer</li>
-													<li><strong>Unlimited</strong> Email Accounts</li>
-													<li><strong>Includes </strong>  Global CDN</li>
-													<li><strong>High Performance</strong>  Servers</li>
-													<li><strong>location</strong> : <img src="images/india.png"></li>
-													</ul>
-												</div>
-												<a href="#">buy now</a>
-											</div>
-											<div class="col-md-3 linux-price">
-												<div class="linux-top">
-												<h4>Advanced</h4>
-												</div>
-												<div class="linux-bottom">
-													<h5>$279 <span class="month">per month</span></h5>
-													<h6>2 Domain</h6>
-													<ul>
-													<li><strong>Unlimited</strong> Disk Space</li>
-													<li><strong>Unlimited</strong> Data Transfer</li>
-													<li><strong>Unlimited</strong> Email Accounts</li>
-													<li><strong>Includes </strong>  Global CDN</li>
-													<li><strong>High Performance</strong>  Servers</li>
-													<li><strong>location</strong> : <img src="images/india.png"></li>
-													</ul>
-												</div>
-												<a href="#">buy now</a>
-											</div>
-											<div class="col-md-3 linux-price">
-												<div class="linux-top">
-												<h4>Business</h4>
-												</div>
-												<div class="linux-bottom">
-													<h5>$279 <span class="month">per month</span></h5>
-													<h6>3 Domain</h6>
-													<ul>
-													<li><strong>Unlimited</strong> Disk Space</li>
-													<li><strong>Unlimited</strong> Data Transfer</li>
-													<li><strong>Unlimited</strong> Email Accounts</li>
-													<li><strong>Includes </strong>  Global CDN</li>
-													<li><strong>High Performance</strong>  Servers</li>
-													<li><strong>location</strong> : <img src="images/india.png"></li>
-													</ul>
-												</div>
-												<a href="#">buy now</a>
-											</div>
-											<div class="col-md-3 linux-price">
-												<div class="linux-top">
-												<h4>Pro</h4>
-												</div>
-												<div class="linux-bottom">
-													<h5>$259 <span class="month">per month</span></h5>
-													<h6>Unlimited Domains</h6>
-													<ul>
-													<li><strong>Unlimited</strong> Disk Space</li>
-													<li><strong>Unlimited</strong> Data Transfer</li>
-													<li><strong>Unlimited</strong> Email Accounts</li>
-													<li><strong>Includes </strong>  Global CDN</li>
-													<li><strong>High Performance</strong>  Servers</li>
-													<li><strong>location</strong> : <img src="images/india.png"></li>
-													</ul>
-												</div>
-												<a href="#">buy now</a>
-											</div>
+										<?php
+								include("tbl_prod_description.php");
+								$prodesdata = new ProdDes();
+								$result = $prodesdata->getdata(4);
+								for ($i = 0; $i < $result->num_rows; $i++) {
+									$row = $result->fetch_assoc();
+
+									$data = json_decode($row["description"]);
+
+								?>
+									<div class="col-md-3 linux-price text-center">
+										<div class="linux-top">
+											<h4><?php echo $data->name; ?></h4>
+										</div>
+										<div class="linux-bottom">
+											<h5><?php echo "Rs " . $row["mon_price"]; ?><span class="month"> per month</span></h5>
+											<h5><?php echo "Rs " . $row["annual_price"]; ?><span class="month"> Annual</span></h5>
+											<h6><?php echo $data->domain; ?> Domain</h6>
+											<ul>
+												<li><strong><?php echo $data->space . " GB"; ?></strong> Disk Space</li>
+												<li><strong><?php echo $data->bandwidth . " GB"; ?></strong> Data Transfer</li>
+												
+												<li><strong><?php echo $data->langtech; ?></strong> Servers</li>
+												<li><strong>location</strong> : <img src="images/india.png"></li>
+											</ul>
+										</div>
+										<a href="#">buy now</a>
+									</div>
+
+								<?php
+								}
+								?>
+											
+											
 											<div class="clearfix"></div>
 										</div>
 									</div>

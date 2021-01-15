@@ -1,34 +1,52 @@
 <?php
-include("tbl_user.php");
+include("../tbl_product.php");
+$obj=new Product();
 
-//Insert Record of signup
-$action = $_POST["action"];
-if ($action == "insert") {
-	$name = $_POST['name'];
-	$email = $_POST['email'];
-	$mobile = $_POST['mob'];
-	$secQues = $_POST["ques"];
-	$ans = $_POST["ans"];
-	$pass = $_POST["pass"];
-	$signupObj = new Tbluser();
-	if ($signupObj->insertrecord($email, $mobile, $name, $pass, $secQues, $ans)) {
-		echo "record inserted";
-	} else {
-		echo "failed to insert";
-	}
-}
-//End of Insert Record of signup
+if($_POST['action']=='delete'){
+    $id=$_POST['id'];
 
-include("tbl_product.php");
-if($action =="insertproduct"){
-	$proname=$_POST["proname"];
-	echo $proname;
-	$prodobj=new Tblproduct();
-	if($prodobj->insertproduct(1,$proname)){
-		echo "inserted";
-	}else{
-		echo "failed to add";
-	}
-
+    if($obj->deleteData($id)){
+        echo "Delete successfully";
+    }else{
+        echo "Failed to delete";
+    }  
 }
 
+if($_POST['action']=='getdata'){
+    $id=$_POST['id'];
+    $result=$obj->getallproduct($id);
+
+    $data=$result->fetch_assoc();
+    $encdata=json_encode($data);
+    echo $encdata;
+}
+
+if($_POST['action']=='update'){
+    $id=$_POST['id'];
+    $name=$_POST['name'];
+    $link=$_POST['link'];
+    $avail=$_POST['avail'];
+
+    if($obj->update($name,$link,$avail,$id)){
+        echo 'Record Updated successfully';
+    }else{
+        echo 'failed to update';
+    }
+    
+}
+
+if($_POST['action']=='delete all'){
+    $id=$_POST['id'];
+    // echo $id;
+
+    if($obj->deleteallrecord($id)){
+        echo "Delete successfully";
+    }else{
+        echo "Failed to delete";
+    }  
+}
+
+if($_POST['action']=='cart'){
+    $id=$_POST['id'];
+    echo $id;
+}

@@ -9,6 +9,11 @@
 =========================================================
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 -->
+<?php
+include("../../tbl_product.php");
+$product = new Product();
+$data = $product->getData(1);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -29,173 +34,403 @@
   <link rel="stylesheet" href="../assets/css/argon.css?v=1.2.0" type="text/css">
 </head>
 
-<body class="bg-default">
-  <!-- Navbar -->
-  <nav id="navbar-main" class="navbar navbar-horizontal navbar-transparent navbar-main navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="dashboard.html">
-        <img src="../assets/img/brand/white.png">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse navbar-custom-collapse collapse" id="navbar-collapse">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="dashboard.html">
-                <img src="../assets/img/brand/blue.png">
+<body class="bg-Secondary">
+  <nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+    <div class="scrollbar-inner">
+      <!-- Brand -->
+      <div class="sidenav-header  align-items-center">
+        <a class="navbar-brand" href="javascript:void(0)">
+          <h1><span style="color: #585CA7;">Ced</span><span style="color: #e7663f;">Hosting</span></h1>
+          <!-- <img src="assets/img/brand/blue.png" class="navbar-brand-img" alt="..."> -->
+        </a>
+      </div>
+      <div class="navbar-inner">
+        <!-- Collapse -->
+        <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+          <ul class="dot-removal">
+            <li class="nav-item" style="list-style: none;">
+              <a class="nav-link active" href="../admindashboard.php">
+                <i class="ni ni-tv-2 text-primary"></i>
+                <span class="nav-link-text">Dashboard</span>
               </a>
-            </div>
-            <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-              </button>
-            </div>
-          </div>
+            </li>
+            <hr class="my-3">
+            <!-- Heading -->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Products</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#products" class="collapsed active">
+              <a href="#">Products <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="products">
+              <li class="nav-item">
+                <a class="nav-link" href="register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">Create Category</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Add Product</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="viewproduct.php">
+                  <i class="ni ni-single-02 text-yellow"></i>
+                  <span class="nav-link-text">View Products</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="examples/tables.html">
+                  <i class="ni ni-bullet-list-67 text-default"></i>
+                  <span class="nav-link-text">Create New Offers</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+            <!-- Heading -->
+            <!-- Heading -->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Orders</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#Orders" class="collapsed active">
+              <a href="#">Orders <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="Orders">
+              <li class="nav-item">
+                <a class="nav-link" href="examples/register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">Pending Orders</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="examples/addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Completed Orders</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="viewproducts.php">
+                  <i class="ni ni-single-02 text-yellow"></i>
+                  <span class="nav-link-text">All Orders</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="examples/tables.html">
+                  <i class="ni ni-bullet-list-67 text-default"></i>
+                  <span class="nav-link-text">Generate Invoice</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+            <!-- Heading -->
+
+            <!-- heading-->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Services</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#service" class="collapsed active">
+              <a href="#">Services <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="service">
+              <li class="nav-item">
+                <a class="nav-link" href="examples/register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">Active Services</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="examples/addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Expired Services</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+            <!--End of heading -->
+            <!-- heading-->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Users</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#user" class="collapsed active">
+              <a href="#">Users <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="user">
+              <li class="nav-item">
+                <a class="nav-link" href="register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">All User List</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Create New User</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+            <!--End of heading -->
+
+            <!-- heading-->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Blog</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#blog" class="collapsed active">
+              <a href="#">Blog <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="blog">
+              <li class="nav-item">
+                <a class="nav-link" href="examples/register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">Add Blog</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="examples/addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">View all Blog</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+            <!--End of heading -->
+
+            <!-- heading-->
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Account</span>
+            </h6>
+            <li style="list-style: none;" data-toggle="collapse" data-target="#ac" class="collapsed active">
+              <a href="#">Account <span class="fas">&#xf103;</span></a>
+            </li>
+            <ul class="navbar-nav sub-menu collapse" id="ac">
+              <li class="nav-item">
+                <a class="nav-link" href="../register.php">
+                  <i class="ni ni-planet text-orange"></i>
+                  <span class="nav-link-text">Update Company Info</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Change Security Ques</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../addproduct.php">
+                  <i class="ni ni-pin-3 text-primary"></i>
+                  <span class="nav-link-text">Change Password</span>
+                </a>
+              </li>
+            </ul>
+            <hr class="my-3">
+
+            <h6 class="navbar-heading p-0 text-muted">
+              <span class="docs-normal">Documentation</span>
+            </h6>
+            <!-- Navigation -->
+            <ul class="navbar-nav mb-md-3">
+              <li class="nav-item">
+                <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html" target="_blank">
+                  <i class="ni ni-spaceship"></i>
+                  <span class="nav-link-text">Getting started</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/foundation/colors.html" target="_blank">
+                  <i class="ni ni-palette"></i>
+                  <span class="nav-link-text">Foundation</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/components/alerts.html" target="_blank">
+                  <i class="ni ni-ui-04"></i>
+                  <span class="nav-link-text">Components</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/plugins/charts.html" target="_blank">
+                  <i class="ni ni-chart-pie-35"></i>
+                  <span class="nav-link-text">Plugins</span>
+                </a>
+              </li>
+            </ul>
         </div>
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a href="../admindashboard.php" class="nav-link">
-              <span class="nav-link-inner--text">Dashboard</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="login.html" class="nav-link">
-              <span class="nav-link-inner--text">Login</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="register.html" class="nav-link">
-              <span class="nav-link-inner--text">Register</span>
-            </a>
-          </li>
-        </ul>
-        <hr class="d-lg-none" />
-        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://www.facebook.com/creativetim" target="_blank" data-toggle="tooltip" data-original-title="Like us on Facebook">
-              <i class="fab fa-facebook-square"></i>
-              <span class="nav-link-inner--text d-lg-none">Facebook</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://www.instagram.com/creativetimofficial" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Instagram">
-              <i class="fab fa-instagram"></i>
-              <span class="nav-link-inner--text d-lg-none">Instagram</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://twitter.com/creativetim" target="_blank" data-toggle="tooltip" data-original-title="Follow us on Twitter">
-              <i class="fab fa-twitter-square"></i>
-              <span class="nav-link-inner--text d-lg-none">Twitter</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="https://github.com/creativetimofficial" target="_blank" data-toggle="tooltip" data-original-title="Star us on Github">
-              <i class="fab fa-github"></i>
-              <span class="nav-link-inner--text d-lg-none">Github</span>
-            </a>
-          </li>
-          <li class="nav-item d-none d-lg-block ml-lg-4">
-            <a href="https://www.creative-tim.com/product/argon-dashboard-pro?ref=ad_upgrade_pro" target="_blank" class="btn btn-neutral btn-icon">
-              <span class="btn-inner--icon">
-                <i class="fas fa-shopping-cart mr-2"></i>
-              </span>
-              <span class="nav-link-inner--text">Upgrade to PRO</span>
-            </a>
-          </li>
-        </ul>
       </div>
     </div>
   </nav>
   <!-- Main content -->
   <div class="main-content">
     <!-- Header -->
-    <div class="header bg-gradient-primary py-7 py-lg-8 pt-lg-9">
+    <div class="header bg-Secondary  py-3 py-lg-2 pt-lg-3">
       <div class="container">
         <div class="header-body text-center mb-7">
           <div class="row justify-content-center">
             <div class="">
-              <h1 class="text-white">Add Category</h1>
-              <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+              <h1>Add Category</h1>
+              <p class="text-lead">Use these awesome forms to login or create new account in your project for free.</p><br>
             </div>
           </div>
         </div>
       </div>
       <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <!-- <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <polygon class="fill-default" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
+        </svg> -->
       </div>
     </div>
-      <!-- Page content -->
-      <div class="container mt--8 pb-5">
-        <!-- Table -->
-        <div class="row justify-content-center">
-          <div class="col-lg-6 col-md-8">
-            <div class="card bg-secondary border-0">
-              <div class="card-header bg-transparent pb-5">   
-              </div>
-              <div class="card-body px-lg-5 py-lg-2">
-                <form role="form">
-                  <div class="form-group">
-                    <div class="input-group input-group-merge input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                      </div>
-                      <input class="form-control" style="text-align: center;" value="Hosting" type="text" disabled>
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <!-- Table -->
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8">
+          <div class="card bg-Gray 700 border-0">
+            <div class="card-header bg-transparent pb-5">
+            </div>
+            <div class="card-body px-lg-7 py-lg-3">
+              <form role="form">
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                     </div>
+                    <input class="form-control" style="text-align: center;" value="Hosting" type="text" disabled>
                   </div>
-                  <div class="form-group">
-                    <div class="input-group input-group-merge input-group-alternative mb-3">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                      </div>
-                      <input class="form-control" id="name" placeholder="Product Name" type="text">
+                </div>
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                     </div>
+                    <input class="form-control" id="name" placeholder="Product Name" type="text" required>
                   </div>
-                  
-               
-                  <div class="text-center">
-                    <button type="button" id="add" class="btn btn-primary mt-4">Add Category</button>
+                </div>
+                <div class="form-group">
+                  <textarea id="editor" class="form-control" placeholder="link"></textarea>
+                  <div class="input-group input-group-merge input-group-alternative mb-3">
+                    <div class="input-group-prepend">
+
+                    </div>
+                    <!-- <input class="form-control" id="link" placeholder="Product Link" type="text"> -->
                   </div>
-                </form>
+                </div>
+                <div class="text-center">
+                  <input type="submit" id="add" value="Add Category" class="btn btn-primary mt-4">
+                </div>
+              </form>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <table class="table table-bordered text-center" id="tblshow">
+        <thead>
+          <tr style="font-weight: bold;">
+            <th>Parent Category Name</th>
+            <th>Product Name</th>
+            <th>Link</th>
+            <th>Availability</th>
+            <th>Launch Date & Time</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php
+          for ($i = 0; $i < $data->num_rows; $i++) {
+            $row = $data->fetch_assoc();
+            // var_dump($row);
+          ?>
+            <tr>
+              <td><?php if ($row["prod_parent_id"] == 1) {
+                    echo "Hosting";
+                  } ?></td>
+              <td><?php echo $row["prod_name"]; ?></td>
+              <td><?php echo $row["link"]; ?></td>
+
+              <td><?php if ($row["prod_available"] == 1) {
+                    echo "available";
+                  } ?></td>
+              <td><?php echo $row["prod_launch_date"]; ?></td>
+              <td>
+                <a id="<?php echo $row['id']; ?>" data-toggle="modal" data-target="#exampleModal" class="edit btn btn-outline-success">Edit</a>
+                <a id="<?php echo $row['id']; ?>" class="delete btn btn-outline-danger">delete</a>
+                <!-- <input type="button" class="btn btn-outline-danger" value="delete"> -->
+              </td>
+
+            </tr>
+          <?php
+          }
+          ?>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  </div>
+
+  <!-- All Data -->
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" style="text-align: center;" value="Hosting" type="text" disabled>
               </div>
             </div>
-          </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                </div>
+                <input class="form-control" id="prodname" placeholder="Product Name" type="text">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-merge input-group-alternative mb-3">
+
+                <textarea id="editor2" class="form-control" placeholder="link"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+
+              <select name="" id="avail" class="form-control">
+                <option value="1">Available</option>
+                <option value="0">Unavailable</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button type="button" id="update" class="btn btn-primary mt-4">Update Category</button>
+            </div>
+          </form>
+
         </div>
+
       </div>
     </div>
-  <!-- Footer -->
-  <footer class="py-5" id="footer-main">
-    <div class="container">
-      <div class="row align-items-center justify-content-xl-between">
-        <div class="col-xl-6">
-          <div class="copyright text-center text-xl-left text-muted">
-            &copy; 2020 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Creative Tim</a>
-          </div>
-        </div>
-        <div class="col-xl-6">
-          <ul class="nav nav-footer justify-content-center justify-content-xl-end">
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>
-            </li>
-            <li class="nav-item">
-              <a href="https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+  </div>
+
+  <!-- End of all data-->
+
   <!-- Argon Scripts -->
   <!-- Core -->
   <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
@@ -205,22 +440,113 @@
   <script src="../assets/vendor/jquery-scroll-lock/dist/jquery-scrollLock.min.js"></script>
   <!-- Argon JS -->
   <script src="../assets/js/argon.js?v=1.2.0"></script>
+  <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 
   <script>
-    $(document).ready(function(){
-      $("#add").click(function(){
-        var name=$("#name").val();
+    tinymce.init({
+      selector: 'textarea#editor',
+      menubar: false
+    });
+    tinymce.init({
+      selector: 'textarea#editor2',
+      menubar: false
+    });
+  </script>
+
+  <script>
+    var js;
+    $(document).ready(function() {
+      $("#add").click(function(e) {
+        var name = $("#name").val();
         console.log(name);
+        e.preventDefault();
+        var link = tinyMCE.activeEditor.getContent();
+        console.log(link);
 
         $.ajax({
-          url:"../helper.php",
-          method:"post",
-          data:{proname:name,action:"insertproduct"},
-          success:function(data,status){
+          url: "../../helper.php",
+          method: "post",
+          data: {
+            proname: name,
+            link: link,
+            action: "insertproduct"
+          },
+          success: function(data, status) {
             alert(data);
+            $("#tblshow").load(" #tblshow");
+
           }
 
         })
+      })
+      $('#tblshow').on('click', '.delete', function(e) {
+        // alert('button clicked', this);
+        var element = $(this);
+        var del_id = element.attr("id");
+        console.log(del_id);
+        if (confirm("Are you sure you want to delete this?")) {
+          $.ajax({
+            type: "POST",
+            url: "../helper.php",
+            data: {
+              id: del_id,
+              action: "delete"
+            },
+            success: function(data, status) {
+              // alert(data);
+              $("#tblshow").load(" #tblshow");
+
+            }
+          });
+
+        }
+        return false;
+      });
+      $('#tblshow').on('click', '.edit', function(e) {
+        var element = $(this);
+        var id = element.attr("id");
+        console.log(id);
+
+        $.ajax({
+          url: "../helper.php",
+          method: "post",
+          data: {
+            id: id,
+            action: 'getdata'
+          },
+          success: function(data) {
+            js = JSON.parse(data);
+            $("#prodname").val(js.prod_name);
+            $("#editor2").html(js.link);
+            $("#avail selected:option").val(js.prod_available);
+          }
+        })
+
+      });
+      $("#update").click(function() {
+        var name = $("#prodname").val();
+        var link = tinyMCE.activeEditor.getContent();
+        var avail = $("#avail").val();
+        var id=js.id;
+        console.log(js.id);
+        console.log(name);
+        console.log(avail);
+        if(confirm("Are sure to update record ?")){
+          $.ajax({
+            type: "POST",
+            url: "../helper.php",
+            data:{id:id,name:name,link:link,avail:avail,action:'update'},
+            success: function(data, status) {
+              // alert(data);
+              alert(data);
+              location.reload();
+
+            }
+          });
+         
+
+        }
+          return false;
       })
     })
   </script>

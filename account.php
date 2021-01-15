@@ -1,5 +1,5 @@
 <!--
-Au<!--
+	
 Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -67,26 +67,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div>
 								<span>Email Address<label>*</label></span>
 								<input type="email" id="email" style="padding-bottom:5px;width:68%;">
-								<input type="button" value="send otp" class="btn btn-success" style="background:#585CA7;color:white;border-radius:0%;width:28%;margin-top:2px;">
+								<input type="button" value="send otp" class="btn" style="background:#585CA7;color:white;width:28%;margin-top:2px;">
 							</div>
 							<div>
 								<span style="visibility: hidden;">otp<label>*</label></span>
 								<input type="number" style="padding-bottom:5px;width:68%;">
-								<input type="button" value="verify otp" class="btn" style="background:#585CA7;color:white;border-radius:0%;width:28%;margin-top:2px;">
+								<input type="button" value="verify otp" class="btn" style="background:#585CA7;color:white;width:28%;margin-top:2px;">
 							</div>
 							<div>
 								<span>Mobile<label>*</label></span>
 								<input type="number" id="mobile" style="padding-bottom:5px;width:68%;">
-								<input type="button" value="send otp" class="btn btn-success" style="background:#585CA7;color:white;border-radius:0%;width:28%;margin-top:2px;">
+								<input type="button" value="send otp" class="btn" style="background:#585CA7;color:white;width:28%;margin-top:2px;">
 							</div>
 							<div>
 								<span style="visibility: hidden;">otp<label>*</label></span>
 								<input type="number" style="padding-bottom:5px;width:68%;">
-								<input type="button" value="verify otp" class="btn btn-success" style="background:#585CA7;color:white;border-radius:0%;width:28%;margin-top:2px;">
+								<input type="button" value="verify otp" class="btn" style="background:#585CA7;color:white;width:28%;margin-top:2px;">
 							</div>
 							<div>
 								<span>Security Question<label>*</label></span>
-								<select id="security-question" id="ques" name="securityquestion" style="width: 80%;padding:8px;">
+								<select id="ques" name="securityquestion" style="width: 80%;padding:8px;">
 									<option value="Please select security question">Please select security question</option>
 									<option value="What was your childhood nickname?">What was your childhood nickname?</option>
 									<option value="What is the name of your favourite childhood friend?">What is the name of your favourite childhood friend?</option>
@@ -119,7 +119,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="clearfix"> </div>
 					<div class="register-but">
 						<form>
-							<input type="submit" value="submit" id="signup">
+							<input type="button" value="submit" id="signup">
 							<div class="clearfix"> </div>
 						</form>
 					</div>
@@ -133,15 +133,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---footer--->
 	<?php require_once("footer.php"); ?>
 	<!---footer--->
-
+    
 	<script>
-		function ValidateEmail(mail) {
-			if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(myForm.emailAddr.value)) {
-				return (true)
-			}
-			alert("You have entered an invalid email address!")
-			return (false)
-		}
+		$(document).ready(function() {
+
+			$("#signup").click(function(){
+				var fname=$("#fname").val();
+				var lsname=$("#lastn").val();
+				var name=fname+' '+lsname;
+				var email=$("#email").val();
+				var mob=$("#mobile").val();
+				var ques=$("#ques option:selected").val();
+				var ans=$("#ans").val();
+				var pass=$("#pass").val();
+
+				$.ajax({
+					url:"helper.php",
+					method:"post",
+					data:{name:name,email:email,mob:mob,ques:ques,ans:ans,pass,action:"insert"},
+					success: function(data,status){
+						alert(data);
+					}
+				})
+			
+
+			})
+		});
 	</script>
 </body>
 
