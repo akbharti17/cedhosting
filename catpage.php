@@ -100,7 +100,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h4><?php echo $data->name; ?></h4>
 										</div>
 										<div class="linux-bottom">
-											<h5>&#8377;<?php echo " ". $row["mon_price"]; ?><span class="month"> per month</span></h5>
+											<h5>&#8377;<?php echo " " . $row["mon_price"]; ?><span class="month"> per month</span></h5>
 											<h5>&#8377;<?php echo " " . $row["annual_price"]; ?><span class="month"> Annual</span></h5>
 											<h6><?php echo $data->domain; ?>Free Domain</h6>
 											<ul>
@@ -111,7 +111,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<li><strong>location</strong> : <img src="images/india.png"></li>
 											</ul>
 										</div>
-										<a  id="<?php echo $row['id']; ?>" class="cart">buy now</a>
+										<a id="<?php echo $row['id']; ?>" class="cart" data-toggle="modal" data-target="#myModal">buy now</a>
 									</div>
 
 								<?php
@@ -216,26 +216,87 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		</div>
 
+
+		<!-- The Modal -->
+		<div class="modal" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title">Product Plan</h4>
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<form action="">
+							<div class="form-group">
+								<label for="">Select Plan</label>
+								<select name="" id="plans" class="form-control">
+									<option value="">--select plan--</option>
+									<option value="mon_price">Monthly</option>
+									<option value="annual_price">Annual</option>
+								</select>
+							</div>
+							<div class="modal-footer">
+								<button type="button" id="crt" class="btn btn-success">Add to cart</button>
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
+						</form>
+					</div>
+
+
+
+				</div>
+			</div>
+		</div>
+
+
+
+
 	</div>
 	<!---footer--->
 	<?php require_once("footer.php"); ?>
 	<!---footer--->
 
 	<script>
-		$(document).ready(function(){
+		var id;
+		$(document).ready(function() {
 			$('.linux-prices').on('click', '.cart', function(e) {
-            // alert('button clicked', this);
-            var element = $(this);
-            var id = element.attr("id");
-            $.ajax({
-				url:"admin/helper.php",
-				method:"post",
-				data:{id:id,action:"cart"},
-				success:function(data,status){
-					alert(data);
-				}
+				// alert('button clicked', this);
+				var element = $(this);
+				 id = element.attr("id");
+				// $.ajax({
+				// 	url: "admin/helper.php",
+				// 	method: "post",
+				// 	data: {
+						
+				// 	},
+				// 	success: function(data, status) {
+				// 		// alert(data);
+				// 		window.location.href = 'cart.php';
+				// 	}
+				// })
 			})
-          })
+
+			$("#crt").click(function() {
+				var price = $("#plans option:selected").val();
+				console.log(price);
+				$.ajax({
+					url: "admin/helper.php",
+					method: "post",
+					data: {
+						id: id,
+						action: "cart",
+						plan: price,
+					},
+					success: function(data) {
+						window.location.href = 'cart.php';
+					}
+				})
+
+			})
 
 		})
 	</script>

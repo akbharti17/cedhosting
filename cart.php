@@ -3,7 +3,9 @@ Author: W3layouts
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
+
 -->
+
 <!DOCTYPE HTML>
 <html>
 
@@ -56,43 +58,77 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 	<!---header--->
-	<?php require_once("header.php"); ?>
-    <!---header--->
-    
-    <div class="container-fluid mb-3">
-        <table class="table table-striped">
-            <thead>
-            <th>Product Id</th>
-            <th>Product Name</th>
-            <th>Monthly Price</th>
-            <th>Annual Price</th>
-            <th>SKU</th>
-            <th>Quantity</th>
-            <th>Action</th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+	<?php include_once("header.php"); ?>
+	<!---header--->
 
-    </div>
-	
+	<div class="container-fluid mb-3">
+		<table class="table table-striped">
+			<thead>
+				<th>Product Id</th>
+				<th>Product Name</th>
+				<th>Price</th>
+				<th>SKU</th>
+				<!-- <th>Quantity</th> -->
+				<th>Action</th>
+			</thead>
+			<tbody>
+			<?php
+			$msg='';
+			if(isset($_SESSION['cart'])){
+			for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+				$data = $_SESSION['cart'][$i];
+				// echo $data['id'] . "<br>";
+				$js = json_decode($data['description']);
+				// echo $js->name;
+				?>
+				
+				<tr>
+					<td><?php echo $data['id']; ?></td>
+					<td><?php echo $js->name ?></td>
+					<td>
+						<?php
+						 if($_SESSION['plan']=='mon_price'){
+						 echo $data['mon_price'];
+						 }
+						 if($_SESSION['plan']=='annual_price'){
+							echo $data['annual_price'];
+							}
+						 ?>
+					</td>
+					
+					<td><?php echo $data['sku']; ?></td>
+					<!-- <td></td> -->
+					<td><a href="" class='btn btn-danger'>Delete</a></td>
+				</tr>
+			
+				<?php
+			}
+		}else{
+			$msg="No records found";
+		}
+			?>
+			<tr>
+			<td colspan="6" class="text-center text-bold"><?php echo $msg;?></td>
+			</tr>
+			</tbody>
+			
+		</table>
 
-		
+	</div>
 
-    <?php require_once("footer.php"); ?>
-    
-    <script>
-        
-    </script>
+
+
+
+
+
+
+
+	<?php require_once("footer.php");?>
+
+	<script>
+
+	</script>
+
 
 
 

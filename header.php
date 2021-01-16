@@ -4,6 +4,7 @@ include("tbl_product.php");
 $tblprodobj = new Product();
 $result = $tblprodobj->getData(1);
 $n = $result->num_rows;
+session_start();
 ?>
 <div class="header">
 	<div class="container">
@@ -27,24 +28,32 @@ $n = $result->num_rows;
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="index.php">Home <i class="sr-only">(current)</i></a></li>
 						<li><a href="about.php">About</a></li>
-						
+
 						<li><a href="services.php">Services</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 							<ul class="dropdown-menu">
 								<?php for ($i = 0; $i < $n; $i++) {
 									$data = $result->fetch_assoc();
-									?>
+								?>
 									<li><a href="catpage.php?id=<?php echo $data['id']; ?>&name=<?php echo $data["prod_name"]; ?>"><?php echo $data["prod_name"]; ?></a></li>
-									<?php
+								<?php
 								} ?>
-								
+
 							</ul>
 						</li>
 						<li><a href="pricing.php">Pricing</a></li>
 						<li><a href="blog.php">Blog</a></li>
 						<li><a href="contact.php">Contact</a></li>
-						<li><a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+						<li><a href="cart.php"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="badge badge-primary">
+									<?php
+									 if (!isset($_SESSION['cart'])) {
+										echo 0;
+									} else{
+										echo count($_SESSION['cart']);
+									}
+									?>
+									</span></a></li>
 						<li><a href="login.php">Login</a></li>
 					</ul>
 
