@@ -62,7 +62,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---header--->
 
 	<div class="container-fluid mb-3">
-		<table class="table table-striped">
+		
+		<table class="table table-striped" id="table">
 			<thead>
 				<th>Product Id</th>
 				<th>Product Name</th>
@@ -72,46 +73,40 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<th>Action</th>
 			</thead>
 			<tbody>
-			<?php
-			$msg='';
-			if(isset($_SESSION['cart'])){
-			for ($i = 0; $i < count($_SESSION['cart']); $i++) {
-				$data = $_SESSION['cart'][$i];
-				// echo $data['id'] . "<br>";
-				$js = json_decode($data['description']);
-				// echo $js->name;
-				?>
-				
-				<tr>
-					<td><?php echo $data['id']; ?></td>
-					<td><?php echo $js->name ?></td>
-					<td>
-						<?php
-						 if($_SESSION['plan']=='mon_price'){
-						 echo $data['mon_price'];
-						 }
-						 if($_SESSION['plan']=='annual_price'){
-							echo $data['annual_price'];
-							}
-						 ?>
-					</td>
-					
-					<td><?php echo $data['sku']; ?></td>
-					<!-- <td></td> -->
-					<td><a href="" class='btn btn-danger'>Delete</a></td>
-				</tr>
-			
 				<?php
-			}
-		}else{
-			$msg="No records found";
-		}
-			?>
-			<tr>
-			<td colspan="6" class="text-center text-bold"><?php echo $msg;?></td>
-			</tr>
+				$msg = '';
+				if (isset($_SESSION['cart'])) {
+					for ($i = 0; $i < count($_SESSION['cart']); $i++) {
+						$data = $_SESSION['cart'][$i];
+						// echo $data['id'] . "<br>";
+						$js = json_decode($data['description']);
+				?>
+
+						<tr>
+							<td><?php echo $data['id']; ?></td>
+							<td><?php echo $js->name ?></td>
+							<td><?php if ($_SESSION['plan'] == 'mon_price') {
+									echo $data['mon_price'];
+								} else {
+									echo $data['annual_price'];
+								} ?></td>
+
+							<td><?php echo $data['sku']; ?></td>
+							<!-- <td></td> -->
+							<td><a  class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a></td>
+						</tr>
+
+				<?php
+					}
+				} else {
+					$msg = "No records found";
+				}
+				?>
+				<tr>
+					<td colspan="6" class="text-center text-bold"><?php echo $msg; ?></td>
+				</tr>
 			</tbody>
-			
+
 		</table>
 
 	</div>
@@ -123,9 +118,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
-	<?php require_once("footer.php");?>
+	<?php require_once("footer.php"); ?>
 
 	<script>
+		$(document).ready(function(){
+			$("#table").on("click",".btn",function(){
+				var element=$(this);
+				var id=element.attr("id");
+				console.log(id);
+
+				$.ajax({
+					url:"admin/helper.php",
+					method:"post",
+					data:{id:id,action:'delete cart row'},
+					success:function(data){
+						window.location.reload();
+					}
+
+				})
+
+			})
+
+		})
 
 	</script>
 

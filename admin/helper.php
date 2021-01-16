@@ -61,3 +61,8 @@ if ($_POST['action'] == 'cart') {
     print_r($cartarrdata);
     array_push($_SESSION['cart'], $cartarrdata);
 }
+
+if($_POST['action']=='delete cart row'){
+   $id=$_POST['id'];
+   unset($_SESSION['cart'][$id]);
+}

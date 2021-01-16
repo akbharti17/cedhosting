@@ -267,17 +267,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				// alert('button clicked', this);
 				var element = $(this);
 				 id = element.attr("id");
-				// $.ajax({
-				// 	url: "admin/helper.php",
-				// 	method: "post",
-				// 	data: {
-						
-				// 	},
-				// 	success: function(data, status) {
-				// 		// alert(data);
-				// 		window.location.href = 'cart.php';
-				// 	}
-				// })
+				
 			})
 
 			$("#crt").click(function() {
@@ -292,6 +282,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						plan: price,
 					},
 					success: function(data) {
+						// alert(data);
 						window.location.href = 'cart.php';
 					}
 				})
