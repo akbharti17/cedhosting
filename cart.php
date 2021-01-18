@@ -93,7 +93,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 							<td><?php echo $data['sku']; ?></td>
 							<!-- <td></td> -->
-							<td><a  class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a></td>
+							<td><a  class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a>
+						<a href="checkout.php?id=<?php echo $i; ?>">checkout</a></td>
 						</tr>
 
 				<?php
