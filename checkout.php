@@ -49,17 +49,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     <?php include_once("footer.php"); ?>
 
-    <script src="https://www.paypal.com/sdk/js?client-id=AUyaAaNMd0Q08R6Z26UihDDZCZOJo57XSn8H2WGlAYHLQBqrmZM82T2Gs5k4vJj_vm7ppoPwmNBWUH8p&currency=INR"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AW48G5kQshpc7KM2aFvtXTqroVTygQJrtWfwif_UXDqWcqYssjJRoO3sEkspNKxiQsC7g2HIOXaTd5lG"></script>
 
 
     <script>
+        var url = window.location.href;
+        console.log(url);
+        var params = (new URL(url)).searchParams;
+        var price= params.get('price');
+      
+
         paypal.Buttons({
             createOrder: function(data, actions) {
                 // This function sets up the details of the transaction, including the amount and line item details.
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: '100'
+                            value: price
                         }
                     }]
                 });
@@ -69,7 +75,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 return actions.order.capture().then(function(details) {
                     // This function shows a transaction success message to your buyer.
                     alert('Transaction completed by ' + details.payer.name.given_name);
-                   
+                    console.log(details);
+
                 });
             }
         }).render('#paypal-button-container');

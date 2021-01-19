@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!---header--->
 
 	<div class="container-fluid mb-3">
-		
+
 		<table class="table table-striped" id="table">
 			<thead>
 				<th>Product Id</th>
@@ -93,8 +93,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 							<td><?php echo $data['sku']; ?></td>
 							<!-- <td></td> -->
-							<td><a  class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a>
-						<a href="checkout.php?id=<?php echo $i; ?>">checkout</a></td>
+							<td><a class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a>
+								<a href="checkout.php?id=<?php echo $i; ?>&price=<?php if ($_SESSION['plan'] == 'mon_price') {
+																						echo $data['mon_price'];
+																					} else {
+																						echo $data['annual_price'];
+																					} ?>">checkout</a>
+							</td>
 						</tr>
 
 				<?php
@@ -122,17 +127,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<?php require_once("footer.php"); ?>
 
 	<script>
-		$(document).ready(function(){
-			$("#table").on("click",".btn",function(){
-				var element=$(this);
-				var id=element.attr("id");
+		$(document).ready(function() {
+			$("#table").on("click", ".btn", function() {
+				var element = $(this);
+				var id = element.attr("id");
 				console.log(id);
 
 				$.ajax({
-					url:"admin/helper.php",
-					method:"post",
-					data:{id:id,action:'delete cart row'},
-					success:function(data){
+					url: "admin/helper.php",
+					method: "post",
+					data: {
+						id: id,
+						action: 'delete cart row'
+					},
+					success: function(data) {
 						window.location.reload();
 					}
 
@@ -141,7 +149,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			})
 
 		})
-
 	</script>
 
 
