@@ -73,9 +73,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<th>Action</th>
 			</thead>
 			<tbody>
+				
 				<?php
 				$msg = '';
 				if (isset($_SESSION['cart'])) {
+					// foreach($_SESSION['cart'] as $key=>$val){
+					// 	print_r($val);
+	
+					// }
 					for ($i = 0; $i < count($_SESSION['cart']); $i++) {
 						$data = $_SESSION['cart'][$i];
 						// echo $data['id'] . "<br>";
@@ -94,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td><?php echo $data['sku']; ?></td>
 							<!-- <td></td> -->
 							<td><a class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a>
-								<a href="checkout.php?id=<?php echo $i; ?>&price=<?php if ($_SESSION['plan'] == 'mon_price') {
+								<a class="btn btn-success" href="checkout.php?id=<?php echo $i; ?>&price=<?php if ($_SESSION['plan'] == 'mon_price') {
 																						echo $data['mon_price'];
 																					} else {
 																						echo $data['annual_price'];

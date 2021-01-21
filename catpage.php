@@ -100,8 +100,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 											<h4><?php echo $data->name; ?></h4>
 										</div>
 										<div class="linux-bottom">
-											<h5>&#8377;<?php echo " " . $row["mon_price"]; ?><span class="month"> per month</span></h5>
-											<h5>&#8377;<?php echo " " . $row["annual_price"]; ?><span class="month"> Annual</span></h5>
+											<h5>$<?php echo " " . $row["mon_price"]; ?><span class="month"> per month</span></h5>
+											<h5>$<?php echo " " . $row["annual_price"]; ?><span class="month"> Annual</span></h5>
 											<h6><?php echo $data->domain; ?>Free Domain</h6>
 											<ul>
 												<li><strong><?php echo $data->space . " GB"; ?></strong> Disk Space</li>

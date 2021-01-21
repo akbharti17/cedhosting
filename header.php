@@ -4,7 +4,9 @@ include("tbl_product.php");
 $tblprodobj = new Product();
 $result = $tblprodobj->getData(1);
 $n = $result->num_rows;
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
 <div class="header">
 	<div class="container">
