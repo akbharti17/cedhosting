@@ -176,7 +176,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<li> E-mail Support</li>
 								</ul>
 								<a href="#" class="button1">get started</a>
-							</div>
+							</div>co
 						</div>
 					</div>
 					<div class="col-md-3 price-grid">

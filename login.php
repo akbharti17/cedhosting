@@ -6,19 +6,18 @@ if (isset($_POST['login'])) {
 	$pass = $_POST["password"];
 	$tblusrobj = new User();
 	$result = $tblusrobj->login($email, $pass);
-	if($result>0){
-		if($email==$result['email'] && $pass==$result['password'] && $result["is_admin"]==0){
-			$_SESSION['email']=$result['email'];
-			$_SESSION['name']=$result['name'];
+	if ($result > 0) {
+		if ($email == $result['email'] && $pass == $result['password'] && $result["is_admin"] == 0) {
+			$_SESSION['email'] = $result['email'];
+			$_SESSION['name'] = $result['name'];
 			header("location: customer/customerdashboard.php");
-		}else if($email==$result['email'] && $pass==$result['password'] && $result["is_admin"]==1){
-			$_SESSION['email']=$result['email'];
-			$_SESSION['name']=$result['name'];
+		} else if ($email == $result['email'] && $pass == $result['password'] && $result["is_admin"] == 1) {
+			$_SESSION['email'] = $result['email'];
+			$_SESSION['name'] = $result['name'];
 			header("location: admin/admindashboard.php");
-		}else{
+		} else {
 			echo "<script>alert('Incorrect User Id and Password');</script>";
 		}
-
 	}
 }
 

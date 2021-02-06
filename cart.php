@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<td><?php echo $data['sku']; ?></td>
 							<!-- <td></td> -->
 							<td><a class='btn btn-danger' id='<?php echo $i; ?>'>Delete</a>
-								<a class="btn btn-success" href="checkout.php?id=<?php echo $i; ?>&price=<?php if ($_SESSION['plan'] == 'mon_price') {
+								<a style="width:20px;background-color:darkolivegreen;padding:10px;text-decoration:none;color:aliceblue" href="checkout.php?id=<?php echo $i; ?>&price=<?php if ($_SESSION['plan'] == 'mon_price') {
 																						echo $data['mon_price'];
 																					} else {
 																						echo $data['annual_price'];
